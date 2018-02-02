@@ -1,28 +1,91 @@
-var shirts = null;
+var isEmpty = true;
+var shirts;
+var animatedText;
+var customInput;
+var mockCursor;
 
 window.addEventListener('load',() => {
 
+    mockCursor = document.querySelector('#mock-cursor');
+    customInput = document.querySelector('#custom-input');
     shirts = document.querySelector('#number-of-shirts');
+    animatedText = document.querySelector('#animated-text');
 
-    shirts.addEventListener('keyup',(keyEvent) => {
+    mockCursor.addEventListener('click',(event) => {
 
-        console.log(keyEvent.key);
+        shirts.focus();
 
-        setWidth(shirts.value);
+        if (isEmpty) {
+
+            emptyInputField();
+
+        }
+
+        animatedText.style.transform = 'scale(1.2,1.2)';
 
     });
 
-    shirts.select();
+    shirts.addEventListener('keyup', (keyEvent) => {
+
+        setWidth(shirts.value);
+        isEmpty = shirts.value.length == 0;
+        isEmpty ? shirts.style.color = 'rgba(255, 255, 255, 0.2)' : shirts.style.color = 'white';
+
+    });
+
+    shirts.addEventListener('keydown', (keyEvent) => {
+
+        isEmpty = shirts.value.length == 0;
+
+    });
+
+    shirts.addEventListener('focus', (event) => {
+
+        if (isEmpty) {
+
+          emptyInputField();
+
+        }
+
+        animatedText.style.transform = 'scale(1.2,1.2)';
+
+    });
+
+    shirts.addEventListener('blur', (event) => {
+
+        isEmpty = shirts.value.length == 0;
+
+        if (isEmpty) {
+
+            setDefaultValue();
+
+        }
+
+        animatedText.style.transform = 'scale(1,1)';
+
+    });
 
 });
 
+function emptyInputField() {
+
+    shirts.value = '';
+    shirts.style.width = '1.2em';
+
+    isEmpty = true;
+
+}
+
+function setDefaultValue() {
+
+    shirts.style.width = '2.1em';
+    shirts.value = '100';
+    shirts.style.color = 'rgba(255, 255, 255, 0.2)';
+
+}
+
 function setWidth(value) {
 
-    if (value < 10) shirts.style.width = '1em';
-    if (value > 9 && value < 100) shirts.style.width = '2em';
-    if (value > 99 && value < 1000) shirts.style.width = '3em';
-    if (value > 999 && value < 10000) shirts.style.width = '4em';
-
-    console.log(shirts.style.width);
+    shirts.style.width = shirts.value.length == 0 ? shirts.value.length = '0.5em' : (shirts.value.length * 0.8) + 'em';
 
 }

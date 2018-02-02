@@ -14,11 +14,16 @@
 
 <body>
 
-    <div class="animated-text">
+    <div id="animated-text" class="animated-text">
 
         <span class="side-text">I need</span>
 
-        <input id="number-of-shirts" autofocus type="number" class="item" value="100" max="54235" maxlength="5" min="10">
+        <div class="custom-input" id="custom-input">
+
+            <input type="number" id="number-of-shirts" class="item" value="100" max="9999" maxlength="5" min="1">
+            <span class="blinking-cursor" id="mock-cursor">|</span>
+
+        </div>
 
         <span class="side-text">shirts.</span>
 
