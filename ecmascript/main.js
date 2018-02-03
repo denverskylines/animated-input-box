@@ -21,7 +21,7 @@ window.addEventListener('load',() => {
 
         }
 
-        animatedText.style.transform = 'scale(1.2,1.2)';
+        zoomIn();
 
     });
 
@@ -47,7 +47,7 @@ window.addEventListener('load',() => {
 
         }
 
-        animatedText.style.transform = 'scale(1.2,1.2)';
+        zoomIn();
 
     });
 
@@ -61,7 +61,7 @@ window.addEventListener('load',() => {
 
         }
 
-        animatedText.style.transform = 'scale(1,1)';
+        zoomOut();
 
     });
 
@@ -73,6 +73,22 @@ function emptyInputField() {
     shirts.style.width = '1.2em';
 
     isEmpty = true;
+
+}
+
+function zoomIn() {
+
+    if (! window.matchMedia("(max-width: 780px)").matches) {
+
+        animatedText.style.transform = 'scale(1.2,1.2)';
+
+    }
+
+}
+
+function zoomOut() {
+
+    animatedText.style.transform = 'scale(1,1)';
 
 }
 
